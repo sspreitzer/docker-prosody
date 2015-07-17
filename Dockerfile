@@ -1,13 +1,12 @@
-FROM ubuntu:wily
+FROM centos:7
 
-RUN apt-get update && \
-  apt-get install -y prosody supervisor && \
-  rm -rf /var/lib/apt/lists/* && \
-  rm -vf /etc/prosody/certs/*
+RUN yum install -y https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm && \
+  yum install -y supervisor prosody && \
+  yum clean all
 
-ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD supervisord.conf /etc/
 
-VOLUME ["/etc/prosody", "/var/log/prosody"]
+VOLUME ["/etc/prosody", "/var/lib/prosody", "/var/log/prosody"]
 
 EXPOSE 5222 5269
 CMD ["/usr/bin/supervisord"]
