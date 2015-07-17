@@ -7,7 +7,7 @@ RUN apt-get update && \
 
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-VOLUME ["/etc/prosody", "/var/log/prosody"]
+VOLUME ["/etc/prosody", "/var/lib/prosody", "/var/log/prosody"]
 
 EXPOSE 5222 5269
 CMD ["/usr/bin/supervisord"]
