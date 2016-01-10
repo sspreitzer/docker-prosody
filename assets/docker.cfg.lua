@@ -1,0 +1,2 @@
+log = "*console"
+daemonize = false
